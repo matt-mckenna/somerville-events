@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Select</title>
+</head>
+<body>
+    <h2>Select items:</h2>
+    <form method="post">
+        {% csrf_token %}
+        <select name="selected_items" multiple>
+            <option value="item1">Item 1</option>
+            <option value="item2">Item 2</option>
+            <option value="item3">Item 3</option>
+            <!-- Add more options as needed -->
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

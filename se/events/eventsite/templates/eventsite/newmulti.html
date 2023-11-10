@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'eventsite/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="left-pane">
+            <h2>Filter by Date</h2>
+            <ul id="dat e-checkboxes">
+                <input type="checkbox" id="this-weekend-checkbox" class="date-checkbox" value="This weekend">
+                <label for="this-weekend-checkbox">This weekend</label>
+                <br>
+                
+                <input type="checkbox" id="this-week-checkbox" class="date-checkbox" value="This week">
+                <label for="this-week-checkbox">This week</label>
+                <br>
+                
+            </ul>     
+            OR
+            <ul id="date-filter">
+                <label for="from-date">From Date:</label>
+                <input type="date" id="from-date" name="from-date">
+                <a href="javascript:void(0);" class="clear-link" onclick="clearDate('from-date')">clear</a>
+                <br>
+                
+                <label for="to-date">To Date:</label>
+                <input type="date" id="to-date" name="to-date">
+                <a href="javascript:void(0);" class="clear-link" onclick="clearDate('to-date')">clear</a>
+                <br>
+                
+            </ul>
+
+            <h2>Filter by category</h2>
+            <ul id="category-choices-list">
+                    {% for choice in catetory_choices %}
+                    <li>
+                        <input type="checkbox" id="{{ choice.0 }}" class="choice-checkbox" value="{{ choice.0 }}">
+                        <label for="{{ choice.0 }}">{{ choice.1 }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h2>Filter by neighborhood</h2>
+            <ul id="neighborhood-choices-list">
+                    {% for neigh in neighborhood_choices %}
+                    <li>
+                        <input type="checkbox" id="{{ neigh.0 }}" class="neighborhood-checkbox" value="{{ neigh.0 }}">
+                        <label for="{{ neigh.0 }}">{{ neigh.1 }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button id="addEventBtn">Add Your Event!</button>
+        </div>
+
+        <div class="right-pane">
+            <div id="display-data">
+                <h2>Events</h2>
+                <!-- Data will be displayed here -->
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'eventsite/script.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            // Trigger the change event for the first checkbox with class "choice-checkbox" on page load
+            $('.choice-checkbox:first').trigger('change');
+        });
+
+        // Add event button click event handler
+        $('#addEventBtn').click(function() {
+            // Redirect to the new page where users can enter a new event
+            window.location.href = '{% url "add_event" %}';
+        });
+
+        const checkbox1 = document.getElementById("this-weekend-checkbox");
+        const checkbox2 = document.getElementById("this-week-checkbox");
+
+        const fromDate = document.getElementById("from-date");
+        const toDate = document.getElementById("to-date");
+
+
+        checkbox1.addEventListener("change", function () {
+            if (checkbox1.checked) {
+                checkbox2.checked = false;
+            }
+            clearDate('from-date')
+            clearDate('to-date')
+        });
+
+        checkbox2.addEventListener("change", function () {
+            if (checkbox2.checked) {
+                checkbox1.checked = false;
+            }
+
+            clearDate('from-date')
+            clearDate('to-date')
+        });
+
+        fromDate.addEventListener("change", function () {
+            checkbox1.checked = false;
+            checkbox2.checked = false;
+        });
+
+        toDate.addEventListener("change", function () { 
+            checkbox1.checked = false;
+            checkbox2.checked = false;
+        });
+
+        function clearDate(dateId) {
+        document.getElementById(dateId).value = "";
+        $('#' + dateId).change();
+        }
+        
+    </script>
+    
+</body>
+</html>
