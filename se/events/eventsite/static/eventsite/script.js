@@ -26,16 +26,6 @@ $(document).ready(function() {
         var thisWeek = document.getElementById("this-week-checkbox").checked;
         var thisWeekend = document.getElementById("this-weekend-checkbox").checked;
 
-        console.log('week data')
-
-        console.log(thisWeek)
-        console.log(thisWeekend)
-
-        console.log('dates')
-
-        console.log(fromDate)
-        console.log(toDate)
-
         // Send an AJAX request to the server to fetch data based on selected choices
         $.ajax({
             url: '/update_data/',  // Replace with the actual URL of your view

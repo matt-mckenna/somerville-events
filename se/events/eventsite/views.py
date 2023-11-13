@@ -128,6 +128,7 @@ def update_data(request):
 
     # Create HTML content to be returned to the client
     data_html = '<br>'
+
     for item in items:
 
         data_html += f"""<h1>{item.name}</h1>
@@ -148,4 +149,7 @@ def update_data(request):
                 data_html += "<li>" + category_dict.get(tag, "None") + "</li> "
         data_html += """</ul></div>"""
     
+    if not items: 
+        return JsonResponse({'data': "<h2> No Events Found </h2>"})
+
     return JsonResponse({'data': data_html})
