@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="left-pane">
-            <h2>Filter by Date</h2>
+            <h2 class="header">Filter by Date</h2>
             <ul id="dat e-checkboxes">
                 <input type="checkbox" id="this-weekend-checkbox" class="date-checkbox" value="This weekend">
                 <label for="this-weekend-checkbox">This weekend</label>
@@ -18,10 +18,11 @@
                 
                 <input type="checkbox" id="this-week-checkbox" class="date-checkbox" value="This week">
                 <label for="this-week-checkbox">This week</label>
-                <br>
+                <br><br>
                 
-            </ul>     
+                 
             OR
+            <br><br>
             <ul id="date-filter">
                 <label for="from-date">From Date:</label>
                 <input type="date" id="from-date" name="from-date">
@@ -34,8 +35,8 @@
                 <br>
                 
             </ul>
-
-            <h2>Filter by category</h2>
+            </ul>
+            <h2 class="header">Filter by category</h2>
             <ul id="category-choices-list">
                     {% for choice in catetory_choices %}
                     <li>
@@ -68,6 +69,28 @@
 
     <script src="{% static 'eventsite/script.js' %}"></script>
     <script>
+
+        function toggleContent(header) {
+        $header = $(header);
+        $content = $header.next();
+
+        $content.slideToggle(500, function () {
+            $header.text(function () {
+            var prefix = $content.is(":visible") ? "-" : "+";
+            return prefix + " " + $header.data("originalText");
+            });
+        });
+        }
+        // Store the original text of each header in a data attribute
+        $(".header").each(function() {
+        var $header = $(this);
+        $header.data("originalText", $header.text());
+        });
+
+        // Attach the click event handler to the headers
+        $(".header").click(function () {
+        toggleContent(this);
+        });
         $(document).ready(function() {
             // Trigger the change event for the first checkbox with class "choice-checkbox" on page load
             $('.choice-checkbox:first').trigger('change');
