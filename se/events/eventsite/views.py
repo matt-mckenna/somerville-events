@@ -79,6 +79,10 @@ def update_data(request):
     sunday_date = friday_date + datetime.timedelta(days=2)
     last_day_of_week = current_date + datetime.timedelta(days=7)
 
+    print(friday_date)
+    print(sunday_date)
+    print(last_day_of_week)
+
     # week 
 
     # convert dates 
@@ -131,9 +135,9 @@ def update_data(request):
 
     for item in items:
 
-        data_html += f"""<h1>{item.name}</h1>
-        <div>
-        <h2>Event Details</h2>
+        data_html += f"""
+        <div class="styled-box">
+        <h1>{item.name}</h1>
         <ul>
             <li><strong>Neighboorhood: </strong> {neighborhood_dict.get(item.neighborhood, 'None')}</li>
             <li><strong>Start Date:</strong> {item.start_day}</li>

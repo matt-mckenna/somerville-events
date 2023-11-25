@@ -84,3 +84,81 @@ a {
     color: rgb(234, 234, 229); /* Use your desired color code */
     text-decoration: none; /* Optional: Remove underline */
 }
+
+.styled-box {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    padding: 20px;
+    width: 600px; /* Set a fixed width for the box */
+    margin: 20px auto; /* Center the box vertically */
+    margin-left: 1%; /* Center the box horizontally */
+    margin-right: auto; /* Center the box horizontally */
+}
+
+.styled-box h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.styled-box ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.styled-box li {
+    margin-bottom: 8px;
+}
+
+
+/* Styles for the custom checkbox */
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px; /* Adjust the padding based on your design */
+    cursor: pointer;
+  }
+
+  .custom-checkbox input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px; /* Adjust the size based on your design */
+    width: 20px; /* Adjust the size based on your design */
+    background-color: #000; /* Black background color of the checkbox */
+    border: 1px solid #000; /* Border color of the checkbox */
+    border-radius: 4px; /* Adjust the border-radius for rounded corners */
+  }
+
+  /* Styles for the checkmark when the checkbox is checked */
+  .custom-checkbox input:checked + .checkmark {
+    background-color: #fff; /* White background color when checked */
+    border: 1px solid #fff; /* White border color when checked */
+  }
+
+  /* Styles for the checkmark itself */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .custom-checkbox input:checked + .checkmark:after {
+    display: block;
+  }
+
+  .custom-checkbox .checkmark:after {
+    left: 7px; /* Adjust the position of the checkmark */
+    top: 3px; /* Adjust the position of the checkmark */
+    width: 5px; /* Adjust the size of the checkmark */
+    height: 10px; /* Adjust the size of the checkmark */
+    border: solid #000; /* Black border color for the checkmark */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }

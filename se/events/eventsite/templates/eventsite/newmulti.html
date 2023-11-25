@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="left-pane">
-            <h2 class="header">Filter by Date</h2>
+            <h2>Filter by Date</h2>
             <ul id="dat e-checkboxes">
                 <input type="checkbox" id="this-weekend-checkbox" class="date-checkbox" value="This weekend">
                 <label for="this-weekend-checkbox">This weekend</label>
@@ -36,7 +36,12 @@
                 
             </ul>
             </ul>
-            <h2 class="header">Filter by category</h2>
+
+            <h2>Filter by category</h2>            
+            <div>
+
+            <!-- <div class="content" style="display: none;"> -->
+
             <ul id="category-choices-list">
                     {% for choice in catetory_choices %}
                     <li>
@@ -45,6 +50,8 @@
                     </li>
                 {% endfor %}
             </ul>
+            </div>
+
             <h2>Filter by neighborhood</h2>
             <ul id="neighborhood-choices-list">
                     {% for neigh in neighborhood_choices %}
@@ -74,6 +81,11 @@
         $header = $(header);
         $content = $header.next();
 
+        if (!$content.hasClass('expanded')) {
+            $header.text("+ " + $header.data("originalText"));
+            $content.addClass('expanded');
+        }
+
         $content.slideToggle(500, function () {
             $header.text(function () {
             var prefix = $content.is(":visible") ? "-" : "+";
@@ -91,6 +103,8 @@
         $(".header").click(function () {
         toggleContent(this);
         });
+
+        
         $(document).ready(function() {
             // Trigger the change event for the first checkbox with class "choice-checkbox" on page load
             $('.choice-checkbox:first').trigger('change');

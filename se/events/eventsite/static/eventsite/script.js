@@ -38,8 +38,8 @@ $(document).ready(function() {
                    'this_weekend': thisWeekend},
             success: function(data) {
                 // Update the data displayed from the database
-                var newData = '<h2>Events</h2>' + data.data;
-                $('#display-data')[0].innerHTML = newData;
+                // var newData = '<h2>Events</h2>' + data.data;
+                $('#display-data')[0].innerHTML = data.data;
 
             },
             error: function(error) {
