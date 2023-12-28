@@ -95,3 +95,76 @@ $(document).ready(function() {
     });
 
 });
+
+
+function toggleContent(header) {
+    $header = $(header);
+    $content = $header.next();
+
+    if (!$content.hasClass('expanded')) {
+        $header.text("+ " + $header.data("originalText"));
+        $content.addClass('expanded');
+    }
+
+    $content.slideToggle(500, function () {
+        $header.text(function () {
+        var prefix = $content.is(":visible") ? "-" : "+";
+        return prefix + " " + $header.data("originalText");
+        });
+    });
+    }
+    // Store the original text of each header in a data attribute
+    $(".header").each(function() {
+    var $header = $(this);
+    $header.data("originalText", $header.text());
+    });
+
+    // Attach the click event handler to the headers
+    $(".header").click(function () {
+    toggleContent(this);
+    });
+
+    
+    $(document).ready(function() {
+        // Trigger the change event for the first checkbox with class "choice-checkbox" on page load
+        $('.choice-checkbox:first').trigger('change');
+    });
+
+    const checkbox1 = document.getElementById("this-weekend-checkbox");
+    const checkbox2 = document.getElementById("this-week-checkbox");
+
+    const fromDate = document.getElementById("from-date");
+    const toDate = document.getElementById("to-date");
+
+
+    checkbox1.addEventListener("change", function () {
+        if (checkbox1.checked) {
+            checkbox2.checked = false;
+        }
+        clearDate('from-date')
+        clearDate('to-date')
+    });
+
+    checkbox2.addEventListener("change", function () {
+        if (checkbox2.checked) {
+            checkbox1.checked = false;
+        }
+
+        clearDate('from-date')
+        clearDate('to-date')
+    });
+
+    fromDate.addEventListener("change", function () {
+        checkbox1.checked = false;
+        checkbox2.checked = false;
+    });
+
+    toDate.addEventListener("change", function () { 
+        checkbox1.checked = false;
+        checkbox2.checked = false;
+    });
+
+    function clearDate(dateId) {
+    document.getElementById(dateId).value = "";
+    $('#' + dateId).change();
+    }

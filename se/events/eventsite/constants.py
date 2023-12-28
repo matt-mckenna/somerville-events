@@ -2,8 +2,15 @@ CATEGORY_TAGS = (
     ('kids', 'Kid Friendly'),
     ('music', 'Music'),
     ('market', 'Market'),
-    ('athletic', 'Athletic')
+    ('athletic', 'Athletic'),
+    ('business', 'Business'),
+    ('cultural', 'Cultural'),
+    ('education', 'Education'),
+    ('general', 'General Events'),
+    ('hearing', 'Hearings and Meetings'),
+    ('volunteer', 'Volunteer')
 )
+
 CATEGORY_TAGS = tuple(sorted(CATEGORY_TAGS))
 
 NEIGHBORHOOD_TAGS = (

@@ -8,13 +8,6 @@ from .forms import EventForm
 
 import datetime
 
-def home(request):
-    return render(request, 'eventsite/home.html')
-
-
-def multi(request):
-    return render(request, 'eventsite/multi.html')
-
 def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -28,23 +21,7 @@ def add_event(request):
 
 
 def newmulti(request):
-    tag_fields = ['tag1', 'tag2', 'tag3']
-    # categoryChoices = set()
-    # for field_name in tag_fields:
-    #     values = Event.objects.filter(**{field_name + '__isnull': False}).values_list(field_name, flat=True).distinct()
-    #     display_names = [Event._meta.get_field(field_name)]
-    #                      #.choices_dict.get(value) for value in values]
-    #     print(display_names)
-    #     categoryChoices.update(values)
-
-    # field_name = 'neighborhood'
-    # neighborhoodValues = Event.objects.filter(**{field_name + '__isnull': False}).values_list(field_name, flat=True).distinct()
-    
-    categoryChoices = [human for comp, human in CATEGORY_TAGS]
-    neighborhoodValues = [human for comp, human in NEIGHBORHOOD_TAGS]
-
-    
-    return render(request, 'eventsite/newmulti.html', 
+    return render(request, 'eventsite/events.html', 
                   {'catetory_choices': CATEGORY_TAGS,
                    'neighborhood_choices': NEIGHBORHOOD_TAGS})
 
